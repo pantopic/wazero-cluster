@@ -112,7 +112,7 @@ func (h *hostModule) InitContext(ctx context.Context, m api.Module) (context.Con
 	} {
 		*v = readUint32(m, ptr+uint32(4*i))
 	}
-	return context.WithValue(ctx, h.ctxKeyMeta, meta), nil
+	return context.WithValue(ctx, ctxKeyMeta, meta), nil
 }
 
 // ContextCopy populates dst context with the meta page from src context.
