@@ -12,21 +12,13 @@ var (
 	ctxKeyResource  = Name + `/resource`
 )
 
-type resolver struct {
-	namespace string
-	resource  string
-}
+type ContextCopy = func(dst, src context.Context) context.Context
 
-func (r resolver) ContextCopy(dst, src context.Context) context.Context {
-	dst = context.WithValue(dst, ctxKeyNamespace, r.namespace)
-	dst = context.WithValue(dst, ctxKeyResource, r.resource)
-	return dst
-}
-
-func NewResolver(namespace, resource string) resolver {
-	return resolver{
-		namespace: namespace,
-		resource:  resource,
+func NewResolver(namespace, resource string) ContextCopy {
+	return func(dst, src context.Context) context.Context {
+		dst = context.WithValue(dst, ctxKeyNamespace, namespace)
+		dst = context.WithValue(dst, ctxKeyResource, resource)
+		return dst
 	}
 }
 
