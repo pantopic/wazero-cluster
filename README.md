@@ -1,3 +1,3 @@
 # Pantopic Cluster
 
-A leaf module for cluster context access across extensions.
+A leaf extension to facilitate cluster context access.
